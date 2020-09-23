@@ -14,4 +14,6 @@ export const MEDIA_TYPES: Record<string, string> = {
   '.wasm': 'application/wasm',
   '.mjs': 'application/javascript',
   '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
+  '.avi': 'video/x-msvideo',
 };

@@ -43,7 +43,53 @@ async function serveFile(
   const headers = new Headers();
   headers.set('content-length', fileInfo.size.toString());
   const contentTypeValue = contentType(filePath);
+  console.log(contentTypeValue);
   if (contentTypeValue) {
+    // if (contentTypeValue.includes('video')) {
+    //   headers.set('content-type', 'text/html');
+
+    //   const page = html`
+    //     <!DOCTYPE html>
+    //     <html lang="en">
+    //       <head>
+    //         <meta charset="UTF-8" />
+    //         <meta
+    //           name="viewport"
+    //           content="width=device-width, initial-scale=1.0"
+    //         />
+    //         <title>${filePath}</title>
+    //       </head>
+    //       <body>
+    //         <video-js
+    //           id="vid1"
+    //           width="600"
+    //           height="300"
+    //           class="vjs-default-skin"
+    //           controls
+    //         >
+    //           <source
+    //             src="${`/${relative(TARGET, filePath)}`}"
+    //             type="${contentTypeValue}"
+    //           />
+    //         </video-js>
+
+    //         <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/video.min.js"></script>
+    //         <script src="https://unpkg.com/browse/@videojs/http-streaming@1.13.4/dist/videojs-http-streaming.min.js"></script>
+    //         <script>
+    //           var player = videojs('vid1');
+    //           player.play();
+    //         </script>
+    //       </body>
+    //     </html>
+    //   `;
+
+    //   const res = {
+    //     status: 200,
+    //     body: page,
+    //     headers,
+    //   };
+    //   return res;
+    // }
     headers.set('content-type', contentTypeValue);
   }
   req.done.then(() => {
@@ -286,8 +332,8 @@ function assert(expr: unknown, msg = ''): asserts expr {
 
 function main(): void {
   const CORSEnabled = serverArgs.cors ? true : false;
-  const port = serverArgs.port ?? serverArgs.p ?? 4507;
-  const host = serverArgs.host ?? '0.0.0.0';
+  const port = serverArgs.port ?? serverArgs.p ?? 8080;
+  const host = serverArgs.host ?? 'localhost';
   const addr = `${host}:${port}`;
   const tlsOpts = {} as HTTPSOptions;
   tlsOpts.certFile = serverArgs.cert ?? serverArgs.c ?? '';
